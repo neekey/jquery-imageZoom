@@ -5,7 +5,8 @@
 
 .image-zoom-wrap .image-zoom-enlarge,
 .image-zoom-wrap .image-zoom-narrow {
-    background: url(zoom.png) no-repeat;
+    /*background: url(zoom.png) no-repeat;*/
+    background: url(https://github.com/neekey/jquery-imageZoom/raw/master/zoom.png) no-repeat;
     width: 32px;
     display: block;
     height: 32px;
@@ -32,6 +33,8 @@
 }
 
 .image-zoom-wrap .loading {
-    background: url(loading.gif) 50% 50% no-repeat;
+    /*background: url(loading.gif) 50% 50% no-repeat;*/
+    background: url(https://github.com/neekey/jquery-imageZoom/raw/master/loading.gif) 50% 50% no-repeat;
+
 }
 
