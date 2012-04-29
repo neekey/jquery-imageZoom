@@ -114,6 +114,9 @@
                     return;
                 }
                 else {
+
+                    // 发生缩放 ，则隐藏按钮
+                    that.showZoomBtn( false );
                     if( dir > 0 ){
 
                         that.enlarge();
@@ -128,20 +131,17 @@
             this.img.on( 'mouseenter', function (){
 
                 that.setZoomBtnPos();
-                that.enlargeBtn.show();
-                that.narrowBtn.show();
+                that.showZoomBtn( true );
             });
 
             this.img.on( 'mouseout', function (){
 
-                that.enlargeBtn.hide();
-                that.narrowBtn.hide();
+                that.showZoomBtn( false );
             });
 
             this.enlargeBtn.on( 'mouseenter', function (){
 
-                that.enlargeBtn.show();
-                that.narrowBtn.show();
+                that.showZoomBtn( true );
             }).on( 'click', function (){
 
                 that.enlarge();
@@ -149,14 +149,27 @@
 
             this.narrowBtn.on( 'mouseenter', function (){
 
-                that.enlargeBtn.show();
-                that.narrowBtn.show();
+                that.showZoomBtn( true );
             }).on( 'click', function (){
 
                 that.narrow();
             });
 
 
+        },
+
+        showZoomBtn: function ( ifShow ){
+
+            if( ifShow ){
+
+                this.enlargeBtn.show();
+                this.narrowBtn.show();
+            }
+            else {
+
+                this.enlargeBtn.hide();
+                this.narrowBtn.hide();
+            }
         },
 
         setZoomBtnPos: function (){
@@ -211,6 +224,7 @@
             }, 100, function (){
 
                 that.setZoomBtnPos();
+                that.showZoomBtn( true );
             });
         },
 
@@ -224,6 +238,7 @@
             var targetRadio = currentRadio - this.zoomOffset;
             var targetWidth = undefined;
             var targetHeight = undefined;
+            var that = this;
 
             if( targetRadio < 1 ){
 
@@ -239,7 +254,11 @@
             this.img.animate({
                 width: targetWidth + 'px',
                 height: targetHeight + 'px'
-            }, 100);
+            }, 100 , function (){
+
+                that.setZoomBtnPos();
+                that.showZoomBtn( true );
+            });
         }
     }
 
